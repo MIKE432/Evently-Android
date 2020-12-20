@@ -44,6 +44,12 @@ class UserRepository(private val context: Context) {
         return user()
     }
 
+    suspend fun resetPassword(email: String): Resource<Boolean> {
+        Firebase.auth.sendPasswordResetEmail(email)
+            .await()
+        return Resource.success(true)
+    }
+
     private fun user(): Resource<FirebaseUser> {
         val currUser = Firebase.auth.currentUser
         return if (currUser != null) {

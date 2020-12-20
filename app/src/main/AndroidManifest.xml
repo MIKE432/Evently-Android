@@ -38,6 +38,7 @@
         <activity android:name=".guest.register_activity.RegisterActivity" android:theme="@style/LoginTheme" android:noHistory="true"/>
         <activity android:name=".logged.main.MainLoggedActivity" android:theme="@style/LoggedTheme"/>
         <activity android:name=".logged.create_event.CreateEventActivity" android:theme="@style/LoggedTheme"/>
+        <activity android:name=".guest.reset_password_activity.ResetPasswordActivity" android:theme="@style/LoginTheme"/>
     </application>
 
 </manifest>

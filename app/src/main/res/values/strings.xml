@@ -39,4 +39,6 @@
     <string name="event_name">Event name</string>
     <string name="place">Place</string>
     <string name="find_category">Find Category</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="remembered_credentials">Remembered Credentials?</string>
 </resources>

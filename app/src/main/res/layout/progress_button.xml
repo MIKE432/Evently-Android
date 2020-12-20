@@ -15,6 +15,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         style="@style/button.primary"
         tools:text="@string/log_in"
+        android:maxLines="1"
+        android:ellipsize="end"
         />
     <ProgressBar
         android:id="@+id/progress_button_progress_bar"
