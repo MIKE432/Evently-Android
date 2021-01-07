@@ -59,6 +59,9 @@ class ProfileFragment: Fragment(R.layout.profile_fragment) {
                 dialog.cancel()
             }
 
+        profile_page_settings_button.setOnClickListener {
+            startActivity(Intent(context, ProfileSettingsActivity::class.java))
+        }
 
         profile_page_logout_button.setOnClickListener {
             alertDialog.show()
