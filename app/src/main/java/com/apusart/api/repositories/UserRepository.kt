@@ -69,4 +69,14 @@ class UserRepository(private val context: Context) {
         val file = userService.getReference(path)
         return Resource.success(file.downloadUrl.await())
     }
+
+//    fun updateEmail(email: String) : Boolean {
+//        val currUser = Firebase.auth.currentUser
+//        var retValue = false
+//        currUser!!.updateEmail(email).addOnCompleteListener { task ->
+//            retValue = task.isSuccessful
+//            Log.d("ChangeEmailTest", "Email change: $retValue")
+//        }
+//        return retValue
+//    }
 }
