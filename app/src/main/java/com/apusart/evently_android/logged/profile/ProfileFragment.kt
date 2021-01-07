@@ -5,7 +5,9 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
@@ -23,6 +25,7 @@ import com.apusart.tools.AppViewModelFactory
 import com.apusart.tools.Codes
 import com.bumptech.glide.Glide
 import com.facebook.FacebookSdk
+import com.facebook.Profile
 import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -40,13 +43,30 @@ class ProfileFragment: Fragment(R.layout.profile_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         requireContext().appComponent.inject(this)
         super.onViewCreated(view, savedInstanceState)
-        viewModel.profilePicture.observe(viewLifecycleOwner, { res ->
-            handleResource(res,
-                onSuccess = {
-                    profile_page_user_picture.loadPhoto(it)
-                })
+
+        viewModel.getProfilePhoto(MutableLiveData(Firebase.auth.currentUser).value?.email.toString())
+
+        viewModel.photoUri.observe(viewLifecycleOwner,{image ->
+            if(image!=null){
+                if(image==""){
+                    viewModel.profilePicture.observe(viewLifecycleOwner, { res ->
+                        handleResource(res,
+                            onSuccess = {
+                                viewModel.uploadProfileToLocalDB(MutableLiveData(Firebase.auth.currentUser).value?.email.toString(),it.toString())
+                                profile_page_user_picture.loadPhoto(it)
+                            })
+                    })
+                }
+                else{
+                    profile_page_user_picture.loadPhoto(image)
+                }
+            }
         })
 
+        viewModel.updateProfileName()
+        viewModel.profileName.observe(viewLifecycleOwner, { profileName ->
+            view.findViewById<TextView>(R.id.profile_page_user_name).text = profileName
+        })
 
         alertDialog = AlertDialog.Builder(requireContext())
         alertDialog
