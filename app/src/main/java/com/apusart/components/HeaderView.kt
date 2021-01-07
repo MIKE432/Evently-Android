@@ -6,11 +6,12 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import com.apusart.evently_android.R
 import kotlinx.android.synthetic.main.header.view.*
 
-class HeaderView(context: Context, attributeSet: AttributeSet): LinearLayout(context, attributeSet) {
+class HeaderView(context: Context, attributeSet: AttributeSet): CardView(context, attributeSet) {
     private val view = LayoutInflater.from(context)
         .inflate(R.layout.header, this, false)
 
@@ -53,7 +54,7 @@ class HeaderView(context: Context, attributeSet: AttributeSet): LinearLayout(con
             iconLeading = getDrawable(R.styleable.HeaderView_header_view_leading_icon)
             iconTrailing = getDrawable(R.styleable.HeaderView_header_view_trailing_icon)
         }
-
+        elevation = 50f
         addView(view)
     }
 

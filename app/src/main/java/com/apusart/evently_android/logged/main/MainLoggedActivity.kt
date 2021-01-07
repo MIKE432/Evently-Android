@@ -25,11 +25,11 @@ class MainLoggedActivity: AppCompatActivity(R.layout.main_logged) {
                 startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(startMain)
             }
-            R.id.search_page -> {
+            R.id.searchFragment -> {
 
                 main_logged_navigation_view.selectedItemId = R.id.events_page
             }
-            R.id.add_event_page -> {
+            R.id.pickEventVisibility -> {
 
                 main_logged_navigation_view.selectedItemId = R.id.events_page
             }

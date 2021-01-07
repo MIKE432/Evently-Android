@@ -15,4 +15,8 @@
         android:id="@+id/AddEventPickCategoryFragment"
         android:name="com.apusart.evently_android.logged.create_event.EventPickCategoryFragment"
         android:label="EventPickCategoryFragment" />
+    <fragment
+        android:id="@+id/AddEventPreviewFragment"
+        android:name="com.apusart.evently_android.logged.create_event.CreateEventPreviewFragment"
+        android:label="CreateEventPreviewFragment" />
 </navigation>

@@ -6,6 +6,7 @@ import com.apusart.di.AppModule
 import com.apusart.evently_android.guest.initial_activity.InitialActivity
 import com.apusart.evently_android.guest.login_activity.LoginActivity
 import com.apusart.evently_android.guest.register_activity.RegisterActivity
+import com.apusart.evently_android.logged.create_event.CreateEventActivity
 import com.apusart.evently_android.logged.profile.ProfileFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -18,6 +19,7 @@ interface ApplicationComponent {
     fun inject(activity: LoginActivity)
     fun inject(activity: RegisterActivity)
     fun inject(fragment: ProfileFragment)
+    fun inject(activity: CreateEventActivity)
 
     @Component.Builder
     interface Builder {

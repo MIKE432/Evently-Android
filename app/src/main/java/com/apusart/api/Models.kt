@@ -41,9 +41,26 @@ data class Resource<out T>(val status: Status, val data: T?, val message: String
 //To tylko test, z powodu tego ze jeśli zmienimy jakoś baze to trzeba potem zrobić migrację to jeśli nie bedzie działać to polecam
 // wywalić appkę z VM
 @Entity
-data class Event(
+data class Test(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "title") val title: String
+)
+
+data class Event(
+    val id: String,
+    val name: String,
+    val description: String,
+    val date: String,
+    val place: String,
+    val creator: UserShort,
+    val photoPath: String,
+    val categories: List<String> = listOf(),
+    val joinedUsers: List<UserShort> = listOf()
+)
+
+data class UserShort(
+    val id: String,
+    val name: String
 )
 
 fun <T> handleResource(
@@ -53,14 +70,8 @@ fun <T> handleResource(
     onError: ((message: String?, data: T?) -> Unit) = { _, _ -> }
 ) {
     when(res.status) {
-        Resource.Status.SUCCESS -> {
-            onSuccess(res.data)
-        }
-        Resource.Status.PENDING -> {
-            onPending(res.data)
-        }
-        Resource.Status.ERROR -> {
-            onError(res.message, res.data)
-        }
+        Resource.Status.SUCCESS -> onSuccess(res.data)
+        Resource.Status.PENDING -> onPending(res.data)
+        Resource.Status.ERROR -> onError(res.message, res.data)
     }
 }

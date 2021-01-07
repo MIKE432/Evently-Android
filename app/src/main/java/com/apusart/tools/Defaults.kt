@@ -37,6 +37,22 @@ object Tools {
             imm?.hideSoftInputFromWindow(v.windowToken, 0)
         }
     }
+
+    fun toStringDate(day: Int, month: Int, year: Int, hour: Int, minutes: Int): String {
+        return "${zeroInFrontOf(day)}-${zeroInFrontOf(month)}-$year at ${zeroInFrontOf(hour)}:${zeroInFrontOf(minutes)}"
+    }
+
+    private fun zeroInFrontOf(int: Int): String {
+        return if(int >=10) "$int" else "0$int"
+    }
+
+
+    fun getRandomString(length: Int) : String {
+        val charset = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz0123456789"
+        return (1..length)
+            .map { charset.random() }
+            .joinToString("")
+    }
 }
 
 object LoginTools {

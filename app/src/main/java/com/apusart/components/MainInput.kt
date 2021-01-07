@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
@@ -18,7 +20,23 @@ import kotlinx.android.synthetic.main.main_input.view.*
 class MainInput(context: Context, attributeSet: AttributeSet): LinearLayout(context, attributeSet) {
     val view = LayoutInflater.from(context)
         .inflate(R.layout.main_input, this, false)
+    var text: String = ""
+        set(value) {
+            view.main_input_edit_text.setText(value)
+            field = value
+        }
+        get() {
+            return view.main_input_edit_text.text.toString()
+        }
 
+    var isDisabled: Boolean = false
+        set(value) {
+            if (value == field)
+                return
+            field = value
+            view.main_input_cover.isVisible = value
+            view.main_input_edit_text.isEnabled = !field
+        }
     init {
         context.theme.obtainStyledAttributes(
             attributeSet,
@@ -32,7 +50,7 @@ class MainInput(context: Context, attributeSet: AttributeSet): LinearLayout(cont
             val gravity = getInt(R.styleable.MainInput_android_gravity, 0)
 
             if (editTextHeight != -4F)
-                view.main_input_edit_text.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, editTextHeight.toInt())
+                view.main_input_edit_text.layoutParams = ConstraintLayout.LayoutParams(LayoutParams.MATCH_PARENT, editTextHeight.toInt())
 
             view.main_input_title.text = title
             view.main_input_edit_text.imeOptions = imeOptions
@@ -42,6 +60,14 @@ class MainInput(context: Context, attributeSet: AttributeSet): LinearLayout(cont
         }
 
         addView(view)
+    }
+
+    override fun setOnFocusChangeListener(l: OnFocusChangeListener?) {
+        view.main_input_edit_text.onFocusChangeListener = l
+    }
+
+    override fun setOnClickListener(l: OnClickListener?) {
+        view.main_input_cover.setOnClickListener(l)
     }
 
     companion object {

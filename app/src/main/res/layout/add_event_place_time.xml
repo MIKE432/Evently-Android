@@ -9,22 +9,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/white"
         android:padding="20dp">
         <com.apusart.components.MainInput
-            android:id="@+id/add_event_details_event_name"
+            android:id="@+id/add_event_details_event_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:main_input_input_title="@string/date"
             android:imeOptions="actionNext"
-            android:inputType="text"
+            android:inputType="datetime"
             app:main_input_input="@={viewModel.date}"
             />
         <com.apusart.components.MainInput
-            android:id="@+id/add_event_details_event_description"
+            android:id="@+id/add_event_details_event_place"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/add_event_details_event_name"
+            app:layout_constraintTop_toBottomOf="@id/add_event_details_event_time"
             android:layout_marginTop="10dp"
             app:main_input_input_title="@string/place"
             android:imeOptions="actionDone"

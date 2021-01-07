@@ -46,7 +46,7 @@ class ProgressPoint(context: Context) : View(context) {
 
         lastPaint.color = ResourcesCompat.getColor(
             resources,
-            R.color.colorAccent,
+            R.color.primary_900,
             null
         )
     }
@@ -55,7 +55,6 @@ class ProgressPoint(context: Context) : View(context) {
         super.onDraw(canvas)
 
         canvas?.apply {
-
             drawRoundRect(0.0F, 0.0F, width.toFloat(), height.toFloat(), 100F, 100F, if (isActive) if (isLast) lastPaint else activePaint else passivePaint)
         }
     }
