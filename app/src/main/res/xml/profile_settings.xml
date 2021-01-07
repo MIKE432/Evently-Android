@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="user_settings"
+        android:title="User Settings">
+
+        <EditTextPreference
+            android:key="profile_user_name"
+            android:title="Change user name"
+            android:summary="Michał Raszczuk" />
+
+        <EditTextPreference
+            android:key="profile_user_email"
+            android:title="Change email"
+            android:summary="mraszczuk@wp.pl" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="app_info"
+        android:title="App Settings" >
+
+        <Preference
+            android:key="app_version"
+            android:title="Application Version"
+            android:summary="1.0.0" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
