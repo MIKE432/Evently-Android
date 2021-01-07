@@ -6,9 +6,10 @@ import androidx.room.Database
 import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
 import com.apusart.api.Event
+import com.apusart.api.ProfilePhoto
 import com.apusart.api.local_data_source.db.dao.IEventDao
 
-@Database(entities = [Event::class], version = 1)
+@Database(entities = [Event::class,ProfilePhoto::class], version = 1)
 abstract class EventlyDatabase: RoomDatabase() {
     abstract fun eventDao(): IEventDao
 

@@ -46,6 +46,12 @@ data class Event(
     @ColumnInfo(name = "title") val title: String
 )
 
+@Entity(tableName = "profilePhotoTable")
+data class ProfilePhoto(
+    @PrimaryKey val uid: String,
+    @ColumnInfo(name = "photoURI") val photoURI: String?,
+)
+
 fun <T> handleResource(
     res: Resource<T>,
     onSuccess: ((data: T?) -> Unit) = { _ -> },
