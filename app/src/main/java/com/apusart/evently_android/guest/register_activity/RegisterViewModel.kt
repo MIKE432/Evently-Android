@@ -14,9 +14,10 @@ import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 import javax.inject.Inject
 
-class RegisterActivityViewModel(private val context: Context): ViewModel() {
+class RegisterActivityViewModel(private val context: Context) : ViewModel() {
     private val userRepository = UserRepository(context)
     val emailText = MutableLiveData<String>()
+    val nameText = MutableLiveData<String>()
     val passwordText = MutableLiveData<String>()
     val user = MutableLiveData<Resource<FirebaseUser>>()
 
@@ -27,11 +28,17 @@ class RegisterActivityViewModel(private val context: Context): ViewModel() {
                     return@launch
                 }
 
+                print(nameText.value)
+
+                if (nameText.value == null || nameText.value.equals("")) {
+                    return@launch
+                }
+
                 if (passwordText.value == null || passwordText.value.equals("")) {
                     return@launch
                 }
                 user.value = Resource.pending()
-                user.value = userRepository.register(emailText.value!!, passwordText.value!!)
+                user.value = userRepository.register(emailText.value!!, nameText.value!!, passwordText.value!!)
             } catch (e: Exception) {
                 user.value = Resource.error(e.message)
             }
